@@ -3,9 +3,21 @@
 
 section code
 
+.init:
+    mov eax, 0xb800                     ; screen address 80chars 25 lines
+    mov es, eax                         ; ..use it as base address
+    mov eax, 0                          
+
+.clear:
+    mov byte [es:eax], 0                ; clear char information
+    inc eax
+    mov byte [es:eax], 0x30             ; clear char information
+    inc eax
+
+    cmp eax, 2 * 25 * 80
+    jl  .clear
+
 .main:
-    mov eax, 0xb800                     ; screen address
-    mov es, eax
 
     mov byte [es:0x00], 'H'             ; character 
     mov byte [es:0x01], 0x30            ; color information
