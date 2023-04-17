@@ -11,10 +11,10 @@ section code
 .clear:
     mov byte [es:eax], 0                ; clear char information
     inc eax
-    mov byte [es:eax], 0x30             ; clear char information
+    mov byte [es:eax], 0x40             ; set some color attributes
     inc eax
 
-    cmp eax, 2 * 25 * 80
+    cmp eax, 2 * 25 * 80                ; fill up the screen array
     jl  .clear
 
 .main:
@@ -24,7 +24,7 @@ section code
 
 jmp $                                   ; hang here
 
-; file needs to be 512 bytes
+; file needs to be 512 bytes 
 times 510 - ($ - $$) db 0x00            ; pads up until end
 
 ; 2 magic exec marker bytes

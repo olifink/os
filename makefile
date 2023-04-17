@@ -1,4 +1,4 @@
-all: bootloader
+all: clear bootloader run
 
 bootloader:
 	nasm boot/boot.asm -o boot/boot.img
